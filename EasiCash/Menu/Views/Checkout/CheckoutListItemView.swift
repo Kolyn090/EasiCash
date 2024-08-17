@@ -10,7 +10,7 @@ struct CheckoutListItemView: View {
 //    @Binding var itemTitle: String
 //    @Binding var itemPrice: Double
 //    @Binding var itemQuantity: Int
-    @Binding var item: Item
+    @Binding var item: MenuItem
     
     private var quantityFormatter: NumberFormatter {
         let formatter = NumberFormatter()
