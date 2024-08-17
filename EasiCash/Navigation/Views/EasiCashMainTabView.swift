@@ -16,17 +16,17 @@ struct EasiCashMainTabView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             Tab(AppTabs.menu.name, systemImage: AppTabs.menu.icon, value: .menu) {
-                EasiCashMenuTabView()
+                MenuTabView()
             }
             .customizationID(AppTabs.menu.customizationID)
             
             Tab(AppTabs.sale.name, systemImage: AppTabs.sale.icon, value: .menu) {
-                EasiCashSaleTabView()
+                SaleTabView()
             }
             .customizationID(AppTabs.sale.customizationID)
             
             Tab(AppTabs.analytic.name, systemImage: AppTabs.analytic.icon, value: .analytic) {
-                EasiCashAnalyticTabView()
+                AnalyticTabView()
             }
             .customizationID(AppTabs.analytic.customizationID)
             

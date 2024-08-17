@@ -1,5 +1,5 @@
 //
-//  EasiCashAnalyticTabView.swift
+//  CheckoutView.swift
 //  EasiCash
 //
 //  Created by Yongye on 8/16/24.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct EasiCashAnalyticTabView: View {
+struct CheckoutView: View {
     var body: some View {
-        Text("analytic")
+        Text("check out view")
     }
 }
