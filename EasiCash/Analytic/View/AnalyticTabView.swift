@@ -9,6 +9,15 @@ import SwiftUI
 
 struct AnalyticTabView: View {
     var body: some View {
-        Text("analytic")
+        NavigationStack {
+            VStack {
+                
+            }
+            .navigationTitle("Analytic")
+        }
     }
+}
+
+#Preview {
+    AnalyticTabView()
 }
