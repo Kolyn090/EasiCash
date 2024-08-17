@@ -5,15 +5,62 @@
 //  Created by Yongye on 8/16/24.
 //
 
-import SwiftUI
 import Charts
+import SwiftUI
 
 struct AnalyticTabView: View {
+    
+    @Environment(SaleViewModel.self) var viewModel: SaleViewModel
+    
     var body: some View {
         NavigationStack {
-            VStack {
-                
+            
+            Grid (horizontalSpacing: 20, verticalSpacing: 20) {
+                GridRow {
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 50)
+                            .fill(Color.gray.opacity(0.15))
+                            .frame(width: 300, height: 300)
+                        
+                        VStack {
+                            
+                            Text("$1000")
+                                .font(.system(size: 90))
+                                .foregroundStyle(Color.red)
+                            
+                            Text("Today Total Revenue")
+                                .font(.system(size: 25, weight: .bold))
+                            
+                        }
+                    }
+                    
+                    Chart(viewModel.getOverallSale()) { item in
+                        BarMark(
+                            x: .value("Amount", item.amount),
+                            y: .value("Title", item.title)
+                        )
+                        
+                        .annotation(position: .overlay) {
+                            Text("\(item.amount)")
+                                .font(.caption)
+                                .foregroundColor(.white)
+                        }
+                        .foregroundStyle(item.amount > 50 ? .green : .red)
+                    }
+                    .chartXAxisLabel("Amount")
+                    .chartYAxisLabel("Title")
+                    .frame(width: 300, height: 300)
+                    .padding()
+                    
+                    
+                }
+                GridRow {
+                    Text("R2, C1")
+                    Text("R2, C2")
+                }
             }
+            
             .navigationTitle("Analytic")
         }
     }
@@ -21,4 +68,5 @@ struct AnalyticTabView: View {
 
 #Preview {
     AnalyticTabView()
+        .environment(SaleViewModel.mock)
 }
