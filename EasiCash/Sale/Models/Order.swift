@@ -18,5 +18,4 @@ struct Order: Identifiable {
     let items: [Item]
     let createdAt: Date
     let type: OrderType
-    
 }
