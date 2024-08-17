@@ -10,8 +10,8 @@ import Foundation
 
 struct SaleTabView: View {
     @State private var orders: [Order] = [
-        Order(id: UUID(), user: "Hugo", price: 49.99, items: [Item(title: "Item 1", price: 19.99, quantity: 1)], createdAt: Date(), type: .online),
-        Order(id: UUID(), user: "Alice", price: 79.99, items: [Item(title: "Item 2", price: 79.99, quantity: 1)], createdAt: Date(), type: .inStore)
+        Order(id: UUID(), user: "Hugo", price: 49.99, items: [MenuItem(imageName: "burger", title: "Item1", price: 49.99, quantity: 2)], createdAt: Date(), type: .online),
+        Order(id: UUID(), user: "Alice", price: 79.99, items: [MenuItem(imageName: "pho", title: "Item2", price: 79.99, quantity: 2)], createdAt: Date(), type: .inStore)
     ]
     
     @State private var isInspectorPresented: Bool = false
@@ -23,31 +23,31 @@ struct SaleTabView: View {
         
         return orders.filter { $0.id == selectedOrderID }[0]
     }
-
+    
     var body: some View {
         NavigationStack {
-                Table(orders, selection: $selectedOrderID) {
-                    TableColumn("Order ID") { order in
-                        Text(order.id.uuidString.prefix(16))
-                    }
-                    
-                    TableColumn("Price") { order in
-                        Text(String(format: "$%.2f", order.price))
-                    }
-                    
-                    TableColumn("Order Type") { order in
-                        Text(order.type.rawValue.capitalized)
-                    }
-                    
-                    TableColumn("Time of transaction") { order in
-                        Text(order.createdAt, formatter: dateFormatter)
-                    }
+            Table(orders, selection: $selectedOrderID) {
+                TableColumn("Order ID") { order in
+                    Text(order.id.uuidString.prefix(16))
                 }
-                .onChange(of: selectedOrderID) {
-                    if let selectedOrderID {
-                        isInspectorPresented = true
-                    }
+                
+                TableColumn("Price") { order in
+                    Text(String(format: "$%.2f", order.price))
                 }
+                
+                TableColumn("Order Type") { order in
+                    Text(order.type.rawValue.capitalized)
+                }
+                
+                TableColumn("Time of transaction") { order in
+                    Text(order.createdAt, formatter: dateFormatter)
+                }
+            }
+            .onChange(of: selectedOrderID) {
+                if selectedOrderID != nil {
+                    isInspectorPresented = true
+                }
+            }
             .navigationTitle("Sales")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
@@ -63,7 +63,7 @@ struct SaleTabView: View {
                     SaleInspectionView(order: selectedOrder)
                     
                 }
-                }
+            }
             
         }
     }
@@ -81,8 +81,7 @@ struct SaleTabView: View {
     }
 }
 
-struct SaleTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        SaleTabView()
-    }
+
+#Preview {
+    SaleTabView()
 }

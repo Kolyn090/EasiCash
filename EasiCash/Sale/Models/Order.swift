@@ -20,8 +20,9 @@ struct Order: Identifiable {
     let createdAt: Date
     let type: OrderType
     
-    init(id: UUID = UUID(), price: Double, items: [MenuItem], createdAt: Date = Date.now, type: OrderType) {
+    init(id: UUID = UUID(), user: String, price: Double, items: [MenuItem], createdAt: Date = Date.now, type: OrderType) {
         self.id = id
+        self.user = user
         self.price = price
         self.items = items
         self.createdAt = createdAt

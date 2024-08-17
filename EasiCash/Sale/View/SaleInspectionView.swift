@@ -104,15 +104,8 @@ struct SaleInspectionView: View {
     
 }
 
-//
-struct SaleInspectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        SaleInspectionView(order: Order(id: UUID(), user: "Hugo", price: 49.99, items: [Item(title: "Item 1", price: 19.99, quantity: 1)], createdAt: Date(), type: .online))
-    }
+
+#Preview {
+    SaleInspectionView(order: Order(id: UUID(), user: "Hugo", price: 49.99, items: [MenuItem(imageName: "burger", title: "Item1", price: 49.99, quantity: 2)], createdAt: Date(), type: .online))
 }
 
-//struct SaleTabView_Previews1: PreviewProvider {
-//    static var previews: some View {
-//        SaleTabView()
-//    }
-//}
