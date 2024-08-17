@@ -14,8 +14,8 @@ struct MenuGridGalleryView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(0..<10) { _ in
-                    MenuGridItemView()
+                ForEach(MenuItem.examples) { item in
+                    MenuGridItemView(item: item)
                 }
             }
         }
