@@ -14,7 +14,6 @@ import Foundation
         return customerSelectedItems.items.reduce(0) { $0 + ($1.price * Double($1.quantity)) }
     }
 
-    
     init(customerSelectedItems: CheckOutList = .init(items: [])) {
         self.customerSelectedItems = customerSelectedItems
     }

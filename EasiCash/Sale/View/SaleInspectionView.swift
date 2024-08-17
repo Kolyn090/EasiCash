@@ -106,6 +106,6 @@ struct SaleInspectionView: View {
 
 
 #Preview {
-    SaleInspectionView(order: Order(id: UUID(), user: "Hugo", price: 49.99, items: [MenuItem(imageName: "burger", title: "Item1", price: 49.99, quantity: 2)], createdAt: Date(), type: .online))
+    SaleInspectionView(order: Order(id: UUID(), user: "Hugo", note: "Love the food", price: 49.99, items: [MenuItem(imageName: "burger", title: "Item1", price: 49.99, quantity: 2)], createdAt: Date(), type: .online))
 }
 

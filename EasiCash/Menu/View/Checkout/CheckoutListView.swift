@@ -72,7 +72,7 @@ struct CheckoutListView: View {
                         .font(.headline)
                         .foregroundColor(.primary)
                     Spacer()
-                    Text(String(format: "$%.2f", viewModel.totalPrice))
+                    Text(String(format: "$%.2f", menuViewModel.totalPrice))
                         .font(.headline)
                         .foregroundColor(.secondary)
                 }
@@ -96,8 +96,10 @@ struct CheckoutListView: View {
                             with: menuViewModel.customerSelectedItems,
                             name: customerName,
                             note: additionalInfo,
-                            type: orderType
+                            type: orderType,
+                            totalPrice: menuViewModel.totalPrice
                         )
+                        removeListOrder()
                     } label: {
                         Label("Checkout", systemImage: "cart")
                     }
@@ -108,14 +110,16 @@ struct CheckoutListView: View {
             }
             .alert("Are you sure you want to clear the order?", isPresented: $clearOrder) {
                 Button("No") { }
-                Button("Yes") {
-                    withAnimation {
-                        menuViewModel.clearOrder()
-                    }
-                }
+                Button("Yes") { removeListOrder() }
             }
         } else {
             Text("No item selected")
+        }
+    }
+    
+    func removeListOrder() {
+        withAnimation {
+            menuViewModel.clearOrder()
         }
     }
 }
@@ -123,4 +127,5 @@ struct CheckoutListView: View {
 #Preview {
     CheckoutListView()
         .environment(MenuViewModel.mock)
+        .environment(SaleViewModel.mock)
 }

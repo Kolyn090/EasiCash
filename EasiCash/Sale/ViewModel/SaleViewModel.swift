@@ -15,8 +15,8 @@ import Foundation
         self.saleHistory = saleHistory
     }
     
-    func addSale(with checkoutList: CheckOutList, name: String, note: String, type: OrderType) {
-        self.saleHistory.append(.init(user: name, note: note, price: 1, items: checkoutList.items, type: type))
+    func addSale(with checkoutList: CheckOutList, name: String, note: String, type: OrderType, totalPrice: Double) {
+        self.saleHistory.append(.init(user: name, note: note, price: totalPrice, items: checkoutList.items, type: type))
     }
     
     static var mock: SaleViewModel {
