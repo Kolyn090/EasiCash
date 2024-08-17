@@ -8,6 +8,12 @@
 import Foundation
 import DeveloperToolsSupport
 
+enum MenuCategory: String, CaseIterable {
+    case food
+    case drink
+    case dessert
+}
+
 struct MenuItem: Identifiable, Hashable, Equatable {
     
     var id: UUID
@@ -15,18 +21,20 @@ struct MenuItem: Identifiable, Hashable, Equatable {
     var title: String
     var price: Double
     var quantity: Int
+    var category: MenuCategory
     
-    init(id: UUID = UUID(), imageName: String, title: String, price: Double, quantity: Int = 1) {
+    init(id: UUID = UUID(), imageName: String, title: String, category: MenuCategory, price: Double, quantity: Int = 1) {
         self.id = id
         self.imageName = imageName
         self.title = title
         self.price = price
         self.quantity = quantity
+        self.category = category
     }
     
     static var examples: [Self] = [
-        .init(imageName: "chickenWings", title: "chicken wings", price: 10.99),
-        .init(imageName: "pho", title: "pho", price: 11.99),
-        .init(imageName: "burger", title: "burger", price: 12.99)
+        .init(imageName: "chickenWings", title: "chicken wings", category: .food, price: 10.99),
+        .init(imageName: "pho", title: "pho", category: .drink, price: 11.99),
+        .init(imageName: "burger", title: "burger", category: .dessert, price: 12.99)
     ]
 }

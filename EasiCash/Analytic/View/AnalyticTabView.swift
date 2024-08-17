@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Charts
 
 struct AnalyticTabView: View {
     var body: some View {
