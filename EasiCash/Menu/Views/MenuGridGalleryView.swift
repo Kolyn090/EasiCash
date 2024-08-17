@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct MenuGridGalleryView: View {
+    
+    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    
     var body: some View {
-        Text("Grids View")
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 20) {
+                ForEach(0..<10) { _ in
+                    MenuGridItemView()
+                }
+            }
+        }
     }
 }
 
