@@ -9,33 +9,33 @@ import SwiftUI
 
 struct SaleTabView: View {
     @State private var orders: [Order] = [
-        Order(id: UUID(), price: 49.99, items: [Item(title: "Item 1", price: 19.99, quantity: 1)], createdAt: Date(), type: .online),
-        Order(id: UUID(), price: 79.99, items: [Item(title: "Item 2", price: 79.99, quantity: 1)], createdAt: Date(), type: .inStore)
+        Order(id: UUID(), price: 49.99, items: [MenuItem(imageName: "ChickenWings", title: "Item 1", price: 19.99, quantity: 1)], type: .online),
+        Order(id: UUID(), price: 79.99, items: [MenuItem(imageName: "Pho", title: "Item 2", price: 79.99, quantity: 1)], type: .inStore)
     ]
     
     @State private var isInspectorPresented: Bool = false
     
     @State private var selectedOrder: Order.ID? = nil
-
+    
     var body: some View {
         NavigationStack {
-                Table(orders, selection: $selectedOrder) {
-                    TableColumn("Order ID") { order in
-                        Text(order.id.uuidString.prefix(16))
-                    }
-                    
-                    TableColumn("Price") { order in
-                        Text(String(format: "$%.2f", order.price))
-                    }
-                    
-                    TableColumn("Order Type") { order in
-                        Text(order.type.rawValue.capitalized)
-                    }
-                    
-                    TableColumn("Time of transaction") { order in
-                        Text(order.createdAt, formatter: dateFormatter)
-                    }
+            Table(orders, selection: $selectedOrder) {
+                TableColumn("Order ID") { order in
+                    Text(order.id.uuidString.prefix(16))
                 }
+                
+                TableColumn("Price") { order in
+                    Text(String(format: "$%.2f", order.price))
+                }
+                
+                TableColumn("Order Type") { order in
+                    Text(order.type.rawValue.capitalized)
+                }
+                
+                TableColumn("Time of transaction") { order in
+                    Text(order.createdAt, formatter: dateFormatter)
+                }
+            }
             .navigationTitle("Sales")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
@@ -66,8 +66,6 @@ struct SaleTabView: View {
     }
 }
 
-struct SaleTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        SaleTabView()
-    }
+#Preview {
+    SaleTabView()
 }

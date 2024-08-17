@@ -10,6 +10,8 @@ import DeveloperToolsSupport
 
 struct MenuGridItemView: View {
     
+    @Environment(MenuViewModel.self) var menuViewModel: MenuViewModel
+    
     var item: MenuItem
     
     var body: some View {
@@ -27,10 +29,26 @@ struct MenuGridItemView: View {
             }
         }
         .padding(.horizontal, 10)
+//        .overlay(alignment: .topTrailing) {
+//            if item.quantity > 0 {
+//                Circle()
+//                    .fill(Color.white)
+//                    .frame(width: 25)
+//                    .padding(.horizontal, 15)
+//                    .padding(.vertical, 8)
+//                    .overlay {
+//                        Text("\(item.quantity)")
+//                    }
+//            }
+//        }
+        .onTapGesture {
+            menuViewModel.addOrder(with: item)
+        }
     }
     
 }
 
 #Preview {
     MenuGridItemView(item: MenuItem.examples[0])
+        .environment(MenuViewModel.mock)
 }

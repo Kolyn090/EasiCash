@@ -36,6 +36,7 @@ struct MenuTabView: View {
     }
 }
 
-//#Preview {
-//    MenuTabView()
-//}
+#Preview {
+    MenuTabView()
+        .environment(MenuViewModel())
+}

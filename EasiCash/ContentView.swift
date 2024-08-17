@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var menuViewModel: MenuViewModel = MenuViewModel()
+    
     var body: some View {
         EasiCashMainTabView()
+            .environment(menuViewModel)
     }
 }
 

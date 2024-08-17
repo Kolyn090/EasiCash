@@ -16,10 +16,10 @@ struct CheckoutListView: View {
                 CheckoutListItemView(item: item)
             }
         }
-        .scrollContentBackground(.hidden)
     }
 }
 
 #Preview {
     CheckoutListView()
+        .environment(MenuViewModel.mock)
 }
