@@ -9,6 +9,10 @@ import SwiftUI
 
 struct CheckoutView: View {
     var body: some View {
-        Text("check out view")
+        CheckoutListView()
     }
+}
+
+#Preview {
+    CheckoutView()
 }

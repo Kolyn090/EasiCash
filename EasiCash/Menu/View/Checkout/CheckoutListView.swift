@@ -8,17 +8,14 @@
 import SwiftUI
 
 struct CheckoutListView: View {
-    @State private var items: [MenuItem] = [
-        MenuItem(imageName: "chickenWings", title: "Item 1", price: 9.99, quantity: 1),
-        MenuItem(imageName: "chickenWings", title: "Item 1", price: 9.99, quantity: 1),
-        MenuItem(imageName: "chickenWings", title: "Item 1", price: 9.99, quantity: 1)
-    ]
+    @State private var items: [MenuItem] = MenuItem.examples
     
     var body: some View {
         List {
             ForEach($items) { item in
                 CheckoutListItemView(item: item)
             }
+            .listRowBackground(Color.clear)
         }
     }
 }
