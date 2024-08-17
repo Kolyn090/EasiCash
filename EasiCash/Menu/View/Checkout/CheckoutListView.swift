@@ -9,7 +9,9 @@ import SwiftUI
 
 struct CheckoutListView: View {
     
-    @Environment(MenuViewModel.self) var viewModel: MenuViewModel
+    @Environment(MenuViewModel.self) var menuViewModel: MenuViewModel
+    
+    @Environment(SaleViewModel.self) var saleViewModel: SaleViewModel
     
     @State private var orderType: OrderType = .inStore
     
@@ -20,15 +22,15 @@ struct CheckoutListView: View {
     @State private var clearOrder: Bool = false
     
     var body: some View {
-        @Bindable var viewModel = viewModel
+        @Bindable var menuViewModel = menuViewModel
         
-        if viewModel.customerSelectedItems.items.count > 0 {
+        if menuViewModel.customerSelectedItems.items.count > 0 {
             
             VStack {
                 
                 List {
                     Section {
-                        ForEach($viewModel.customerSelectedItems.items) { item in
+                        ForEach($menuViewModel.customerSelectedItems.items) { item in
                             CheckoutListItemView(item: item)
                         }
                     } header: {
@@ -75,7 +77,12 @@ struct CheckoutListView: View {
                     .buttonStyle(.borderedProminent)
                     
                     Button {
-                        
+                        saleViewModel.addSale(
+                            with: menuViewModel.customerSelectedItems,
+                            name: customerName,
+                            note: additionalInfo,
+                            type: orderType
+                        )
                     } label: {
                         Label("Checkout", systemImage: "cart")
                     }
@@ -88,7 +95,7 @@ struct CheckoutListView: View {
                 Button("No") { }
                 Button("Yes") {
                     withAnimation {
-                        viewModel.clearOrder()
+                        menuViewModel.clearOrder()
                     }
                 }
             }

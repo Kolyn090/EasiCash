@@ -9,10 +9,8 @@ import SwiftUI
 import Foundation
 
 struct SaleTabView: View {
-    @State private var orders: [Order] = [
-        Order(id: UUID(), user: "Hugo", price: 49.99, items: [MenuItem(imageName: "burger", title: "Item1", price: 49.99, quantity: 2)], createdAt: Date(), type: .online),
-        Order(id: UUID(), user: "Alice", price: 79.99, items: [MenuItem(imageName: "pho", title: "Item2", price: 79.99, quantity: 2)], createdAt: Date(), type: .inStore)
-    ]
+    
+    @Environment(SaleViewModel.self) var viewModel: SaleViewModel
     
     @State private var isInspectorPresented: Bool = false
     
@@ -20,13 +18,13 @@ struct SaleTabView: View {
     
     private var selectedOrder: Order? {
         guard let selectedOrderID else { return nil }
-        
-        return orders.filter { $0.id == selectedOrderID }[0]
+
+        return viewModel.saleHistory.filter { $0.id == selectedOrderID }[0]
     }
     
     var body: some View {
         NavigationStack {
-            Table(orders, selection: $selectedOrderID) {
+            Table(viewModel.saleHistory, selection: $selectedOrderID) {
                 TableColumn("Order ID") { order in
                     Text(order.id.uuidString.prefix(16))
                 }
@@ -58,7 +56,6 @@ struct SaleTabView: View {
                 }
             }
             .inspector(isPresented: $isInspectorPresented) {
-                // TODO: View to show items
                 if let selectedOrder {
                     SaleInspectionView(order: selectedOrder)
                     
@@ -84,4 +81,5 @@ struct SaleTabView: View {
 
 #Preview {
     SaleTabView()
+        .environment(SaleViewModel.mock)
 }
