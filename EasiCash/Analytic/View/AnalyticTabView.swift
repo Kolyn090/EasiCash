@@ -25,8 +25,8 @@ struct AnalyticTabView: View {
                         
                         VStack {
                             
-                            Text("$1000")
-                                .font(.system(size: 90))
+                            Text(String(format: "$%.2f", viewModel.getTodayRevenue()))
+                                .font(.system(size: 80))
                                 .foregroundStyle(Color.red)
                             
                             Text("Today Total Revenue")
@@ -35,23 +35,29 @@ struct AnalyticTabView: View {
                         }
                     }
                     
-                    Chart(viewModel.getOverallSale()) { item in
-                        BarMark(
-                            x: .value("Amount", item.amount),
-                            y: .value("Title", item.title)
-                        )
+                    if viewModel.getOverallSale().isEmpty {
+                        Text("Please add some sales")
+                    } else {
                         
-                        .annotation(position: .overlay) {
-                            Text("\(item.amount)")
-                                .font(.caption)
-                                .foregroundColor(.white)
+                        Chart(viewModel.getOverallSale()) { item in
+                            BarMark(
+                                x: .value("Amount", item.amount),
+                                y: .value("Title", item.title)
+                            )
+                            
+                            .annotation(position: .overlay) {
+                                Text("\(item.amount)")
+                                    .font(.caption)
+                                    .foregroundColor(.white)
+                            }
+                            .foregroundStyle(item.amount > 50 ? .green : .red)
                         }
-                        .foregroundStyle(item.amount > 50 ? .green : .red)
+                        .chartXAxisLabel("Amount")
+                        .chartYAxisLabel("Title")
+                        .frame(width: 300, height: 300)
+                        .padding()
+                        
                     }
-                    .chartXAxisLabel("Amount")
-                    .chartYAxisLabel("Title")
-                    .frame(width: 300, height: 300)
-                    .padding()
                     
                     
                 }
