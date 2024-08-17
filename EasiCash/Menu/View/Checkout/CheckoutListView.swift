@@ -66,6 +66,21 @@ struct CheckoutListView: View {
                 
                 Spacer()
                 
+                // Total Price UI
+                HStack {
+                    Text("Total Price:")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                    Spacer()
+                    Text(String(format: "$%.2f", viewModel.totalPrice))
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                }
+                .padding()
+                .cornerRadius(10)
+                .padding([.leading, .trailing, .bottom], 20)
+                
+                
                 HStack(spacing: 20) {
                     
                     Button(role: .destructive) {
