@@ -14,6 +14,7 @@ enum OrderType: String, CaseIterable {
 
 struct Order: Identifiable {
     let id: UUID
+    let user: String
     let price: Double
     let items: [MenuItem]
     let createdAt: Date
