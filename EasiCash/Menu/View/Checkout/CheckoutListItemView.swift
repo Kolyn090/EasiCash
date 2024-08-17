@@ -46,7 +46,8 @@ struct CheckoutListItemView: View {
                     } label: {
                         Image(systemName: "minus")
                     }
-                    .tint(.blue)
+                    .buttonStyle(.plain)
+                    .frame(width: 30, height: 50)
                     
                     TextField("Quantity", value: $item.quantity, formatter: quantityFormatter)
                         .frame(width: 50)
@@ -58,7 +59,8 @@ struct CheckoutListItemView: View {
                     } label: {
                         Image(systemName: "plus")
                     }
-                    .tint(.blue)
+                    .buttonStyle(.plain)
+                    .frame(width: 30, height: 50)
                 }
             }
         }

@@ -15,8 +15,8 @@ struct CheckoutListView: View {
             ForEach($items) { item in
                 CheckoutListItemView(item: item)
             }
-            .listRowBackground(Color.clear)
         }
+        .scrollContentBackground(.hidden)
     }
 }
 

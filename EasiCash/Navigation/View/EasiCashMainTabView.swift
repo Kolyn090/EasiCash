@@ -33,7 +33,6 @@ struct EasiCashMainTabView: View {
         }
         .tabViewStyle(.sidebarAdaptable)
         .tabViewCustomization($tabViewCustomization)
-        .tint(.red)
     }
 }
 
