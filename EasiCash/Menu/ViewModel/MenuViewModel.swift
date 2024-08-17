@@ -9,18 +9,25 @@ import Foundation
 
 @Observable class MenuViewModel {
     
-    var customerSelectedItems: CheckOutList?
+    var customerSelectedItems: CheckOutList
     
-    init(customerSelectedItems: CheckOutList? = nil) {
+    init(customerSelectedItems: CheckOutList = .init(items: [])) {
         self.customerSelectedItems = customerSelectedItems
     }
     
     func addOrder(with item: MenuItem) {
-        if customerSelectedItems != nil {
-            self.customerSelectedItems?.items.append(item)
+        
+        let indexWhereItemExists = customerSelectedItems.items.firstIndex { $0.id == item.id }
+        
+        if let index = indexWhereItemExists {
+            self.customerSelectedItems.items[index].quantity += 1
         } else {
-            self.customerSelectedItems = .init(items: [item])
+            self.customerSelectedItems.items.append(item)
         }
+    }
+    
+    func clearOrder() {
+        self.customerSelectedItems = .init(items: [])
     }
     
     static var mock: MenuViewModel {

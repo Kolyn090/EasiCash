@@ -16,7 +16,7 @@ struct MenuItem: Identifiable, Hashable, Equatable {
     var price: Double
     var quantity: Int
     
-    init(id: UUID = UUID(), imageName: String, title: String, price: Double, quantity: Int = 0) {
+    init(id: UUID = UUID(), imageName: String, title: String, price: Double, quantity: Int = 1) {
         self.id = id
         self.imageName = imageName
         self.title = title

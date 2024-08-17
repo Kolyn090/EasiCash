@@ -42,7 +42,9 @@ struct MenuGridItemView: View {
 //            }
 //        }
         .onTapGesture {
-            menuViewModel.addOrder(with: item)
+            withAnimation {
+                menuViewModel.addOrder(with: item)
+            }
         }
     }
     

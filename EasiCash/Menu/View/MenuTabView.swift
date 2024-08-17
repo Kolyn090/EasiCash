@@ -25,7 +25,7 @@ struct MenuTabView: View {
                 }
             }
             .inspector(isPresented: $isInspectorPresented) {
-                CheckoutView()
+                CheckoutListView()
             }
             
         }
