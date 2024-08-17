@@ -1,2 +1,4 @@
 
 .DS_Store
+*.xcuserdatad/UserInterfaceState.xcuserstate
+EasiCash.xcodeproj/xcuserdata/chengtao.xcuserdatad/xcschemes/xcschememanagement.plist
