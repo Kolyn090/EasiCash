@@ -35,7 +35,7 @@ import Foundation
     
     static var mock: MenuViewModel {
         .init(customerSelectedItems: .init(items: [
-            .init(imageName: "chickenWings", title: "chickenWings", price: 10.99, quantity: 1)
+            .init(imageName: "chickenWings", title: "chickenWings", category: .food, price: 10.99, quantity: 1)
         ]))
     }
 }

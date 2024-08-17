@@ -21,8 +21,8 @@ import Foundation
     
     static var mock: SaleViewModel {
         .init(saleHistory: [
-            .init(id: UUID(), user: "Hugo", note: "Thank you", price: 49.99, items: [MenuItem(imageName: "burger", title: "Item1", price: 49.99, quantity: 2)], createdAt: Date(), type: .online),
-            Order(id: UUID(), user: "Chengtao", note: "Love the food", price: 79.99, items: [MenuItem(imageName: "pho", title: "Item2", price: 79.99, quantity: 2)], createdAt: Date(), type: .inStore)
+            .init(id: UUID(), user: "Hugo", note: "Thank you", price: 49.99, items: [MenuItem(imageName: "burger", title: "Item1", category: .food, price: 49.99, quantity: 2)], createdAt: Date(), type: .online),
+            Order(id: UUID(), user: "Chengtao", note: "Love the food", price: 79.99, items: [MenuItem(imageName: "pho", title: "Item2", category: .drink, price: 79.99, quantity: 2)], createdAt: Date(), type: .inStore)
         ])
     }
 }
