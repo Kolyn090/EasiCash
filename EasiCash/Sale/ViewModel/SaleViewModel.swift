@@ -30,6 +30,10 @@ import Foundation
         .sorted { $0.amount > $1.amount}
     }
     
+    func getTodayRevenue() -> Double {
+        saleHistory.reduce(0) { $0 + $1.price }
+    }
+    
     func addSale(with checkoutList: CheckOutList, name: String, note: String, type: OrderType, totalPrice: Double) {
         self.saleHistory.append(.init(user: name, note: note, price: totalPrice, items: checkoutList.items, type: type))
     }
