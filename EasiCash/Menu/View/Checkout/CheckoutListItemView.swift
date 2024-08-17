@@ -7,10 +7,8 @@
 import SwiftUI
 
 struct CheckoutListItemView: View {
-//    @Binding var itemTitle: String
-//    @Binding var itemPrice: Double
-//    @Binding var itemQuantity: Int
-    @Binding var item: Item
+    
+    @Binding var item: MenuItem
     
     private var quantityFormatter: NumberFormatter {
         let formatter = NumberFormatter()
@@ -19,8 +17,7 @@ struct CheckoutListItemView: View {
     }
     
     var body: some View {
-        VStack {
-            // Title and price
+        VStack(alignment: .leading) {
             HStack {
                 Text(item.title)
                     .font(.headline)
@@ -34,7 +31,6 @@ struct CheckoutListItemView: View {
                     .padding(.trailing, 16)
             }
             
-            // Quantity and controls
             HStack {
                 Text("Quantity:")
                     .font(.headline)
@@ -42,7 +38,6 @@ struct CheckoutListItemView: View {
                     .padding(.leading, 16)
                 Spacer()
                 
-                // Button for increasing and decreasing the quantity
                 HStack {
                     Button {
                         if item.quantity > 0 {
@@ -51,10 +46,12 @@ struct CheckoutListItemView: View {
                     } label: {
                         Image(systemName: "minus")
                     }
+                    .buttonStyle(.plain)
+                    .frame(width: 30, height: 50)
                     
                     TextField("Quantity", value: $item.quantity, formatter: quantityFormatter)
                         .frame(width: 50)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .textFieldStyle(.roundedBorder)
                         .multilineTextAlignment(.center)
                     
                     Button {
@@ -62,19 +59,17 @@ struct CheckoutListItemView: View {
                     } label: {
                         Image(systemName: "plus")
                     }
+                    .buttonStyle(.plain)
+                    .frame(width: 30, height: 50)
                 }
             }
         }
     }
 }
 
-//
-//struct CheckoutListItemView_Previews: PreviewProvider {
-//    @State static private var title = "Title"
-//    @State static private var price = 9.99
-//    @State static private var quantity = 5
-//    
-//    static var previews: some View {
-//        CheckoutListItemView(itemTitle: $title, itemPrice: $price, itemQuantity: $quantity)
-//    }
-//}
+#Preview {
+    
+    @Previewable @State var item: MenuItem = MenuItem.examples[0]
+    
+    CheckoutListItemView(item: $item)
+}

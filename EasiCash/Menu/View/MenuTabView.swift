@@ -25,7 +25,7 @@ struct MenuTabView: View {
                 }
             }
             .inspector(isPresented: $isInspectorPresented) {
-                CheckoutView()
+                CheckoutListView()
             }
             
         }
@@ -36,6 +36,7 @@ struct MenuTabView: View {
     }
 }
 
-//#Preview {
-//    MenuTabView()
-//}
+#Preview {
+    MenuTabView()
+        .environment(MenuViewModel())
+}
