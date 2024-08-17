@@ -33,8 +33,12 @@ struct MenuItem: Identifiable, Hashable, Equatable {
     }
     
     static var examples: [Self] = [
+        // food
         .init(imageName: "chickenWings", title: "chicken wings", category: .food, price: 10.99),
-        .init(imageName: "pho", title: "pho", category: .drink, price: 11.99),
-        .init(imageName: "burger", title: "burger", category: .dessert, price: 12.99)
+        .init(imageName: "pho", title: "pho", category: .food, price: 11.99),
+        .init(imageName: "burger", title: "burger", category: .food, price: 12.99),
+        
+        // drink
+        .init(imageName: "thaiTea", title: "thai Tea", category: .drink, price: 3.99)
     ]
 }

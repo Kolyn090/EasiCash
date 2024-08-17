@@ -13,12 +13,16 @@ struct MenuGridGalleryView: View {
     
     @State private var selectedCategory: MenuCategory = .food
     
+    private var filteredMenuItems: [MenuItem] {
+        MenuItem.examples.filter { $0.category == selectedCategory }
+    }
+    
     var body: some View {
         ScrollView {
             FilterFoodCategoryChipsView(selectedCategory: $selectedCategory)
             
             LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(MenuItem.examples) { item in
+                ForEach(filteredMenuItems) { item in
                     MenuGridItemView(item: item)
                 }
             }
