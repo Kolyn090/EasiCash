@@ -43,6 +43,11 @@ struct SaleTabView: View {
                         Text(order.createdAt, formatter: dateFormatter)
                     }
                 }
+                .onChange(of: selectedOrderID) {
+                    if let selectedOrderID {
+                        isInspectorPresented = true
+                    }
+                }
             .navigationTitle("Sales")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
@@ -56,6 +61,7 @@ struct SaleTabView: View {
                 // TODO: View to show items
                 if let selectedOrder {
                     SaleInspectionView(order: selectedOrder)
+                    
                 }
                 }
             
