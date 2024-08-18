@@ -16,9 +16,9 @@ struct AnalyticTabView: View {
     
     var body: some View {
         NavigationStack {
-            Grid(horizontalSpacing: -10, verticalSpacing: 20) {
+            VStack {
                 
-                GridRow {
+                HStack {
                     ZStack {
                         RoundedRectangle(cornerRadius: 50)
                             .fill(Color.gray.opacity(0.15))
@@ -36,19 +36,20 @@ struct AnalyticTabView: View {
                         }
                     }
                     
-                    if !viewModel.getOverallSale().isEmpty {
-                        BarChartView(viewModel: viewModel)
-                        PieChartView(viewModel: viewModel)
-                    }
+                    BarChartView(viewModel: viewModel)
+                    PieChartView(viewModel: viewModel)
+
                 }
+                .padding()
+                
                     HourlyIncomeChartView(viewModel: viewModel)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .padding()
                 
             }
             .navigationTitle("Analytic")
             .padding(20)
         }
-        .padding(20)
     }
 }
 
