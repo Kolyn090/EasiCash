@@ -21,18 +21,18 @@ struct OrderSubmissionView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
                 .stroke(Color.blue, lineWidth: 4)
-                .foregroundColor(.clear)
-            
+                .gradientForeground(colors: [Color.purple, Color.cyan, Color.pink])
+
             VStack(alignment: .center) {
                 HStack {
                     Circle()
                         .frame(width: 80)
-                        .foregroundColor(.gray)
+                        .gradientForeground(colors: [Color.purple, Color.cyan, Color.pink])
                         .overlay {
                             Image(systemName: "checkmark")
                                 .fontWeight(.bold)
                                 .font(.system(size: 40))
-                                .foregroundColor(.green)
+                                .gradientForeground(colors: [Color.green, Color.mint])
                                 .blur(radius: isAnimating ? 0 : 3.0)
                                 .scaleEffect(isAnimating ? 1 : 0.25)
                                 .opacity(isAnimating ? 1 : 0)
@@ -40,7 +40,7 @@ struct OrderSubmissionView: View {
                 }
                 
                 Text("Your order has been submitted!")
-                    .font(.system(size: 18))
+                    .font(.system(size: 18).bold())
                     .multilineTextAlignment(.center)
             }
         }
