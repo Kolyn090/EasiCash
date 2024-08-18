@@ -11,9 +11,16 @@ import Foundation
     
     var menuItems: [MenuItem] = [
         // food
-        .init(imageName: "chickenWings", title: "chicken wings", category: .food, price: 10.99),
-        .init(imageName: "pho", title: "pho", category: .food, price: 11.99),
-        .init(imageName: "burger", title: "burger", category: .food, price: 12.99),
+        .init(imageName: "burger", title: "Burger", category: .food, price: 12.99),
+        .init(imageName: "chickenWings", title: "Chicken Wings", category: .food, price: 10.99),
+        .init(imageName: "firedRice", title: "Fried Rice", category: .food, price: 8.99),
+        .init(imageName: "noodle", title: "Noodle", category: .food, price: 9.99),
+        .init(imageName: "pho", title: "Pho", category: .food, price: 11.99),
+        .init(imageName: "pizza", title: "Pizza", category: .food, price: 14.99),
+        .init(imageName: "pizza2", title: "Pizza Special", category: .food, price: 15.99),
+        .init(imageName: "sashimi", title: "Sashimi", category: .food, price: 16.99),
+        .init(imageName: "sushi", title: "Sushi", category: .food, price: 13.99),
+        .init(imageName: "xiaolongbao", title: "Xiaolongbao", category: .food, price: 9.99),
         
         // drink
         .init(imageName: "thaiTea", title: "thai Tea", category: .drink, price: 3.99),
