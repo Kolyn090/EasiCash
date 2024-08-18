@@ -25,6 +25,7 @@ struct PieChartView: View {
                     innerRadius: .ratio(0.6),
                     angularInset: 1.5
                 )
+                .cornerRadius(5)
                 .foregroundStyle(by: .value("Category", item.category))
             }
             .chartBackground { chartProxy in
