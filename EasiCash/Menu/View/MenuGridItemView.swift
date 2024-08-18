@@ -52,6 +52,11 @@ struct MenuGridItemView: View {
                 menuViewModel.addOrder(with: item)
             }
         }
+        .onTapGesture(count: 2) {
+            withAnimation {
+                menuViewModel.removeOrder(with: item)
+            }
+        }
     }
     
 }

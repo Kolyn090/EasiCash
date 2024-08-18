@@ -53,6 +53,7 @@ struct CheckoutListItemView: View {
                         .frame(width: 50)
                         .textFieldStyle(.roundedBorder)
                         .multilineTextAlignment(.center)
+                        .keyboardType(.numberPad)
                     
                     Button {
                         item.quantity += 1

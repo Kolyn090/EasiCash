@@ -29,6 +29,20 @@ import Foundation
         }
     }
     
+    func removeOrder(with item: MenuItem) {
+        
+        let indexWhereItemExists = customerSelectedItems.items.firstIndex { $0.id == item.id }
+        
+        if let index = indexWhereItemExists {
+            let quantity = self.customerSelectedItems.items[index].quantity
+            if quantity > 1 {
+                self.customerSelectedItems.items[index].quantity -= 1
+            } else if quantity == 1 {
+                self.customerSelectedItems.items.remove(at: index)
+            }
+        }
+    }
+    
     func clearOrder() {
         self.customerSelectedItems = .init(items: [])
     }

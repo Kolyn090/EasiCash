@@ -22,15 +22,17 @@ struct AnalyticTabView: View {
                         RoundedRectangle(cornerRadius: 50)
                             .fill(Color.gray.opacity(0.15))
                             .frame(width: 300, height: 300)
+                            .gradientForeground(colors: [Color.green, Color.yellow])
                         
                         VStack {
                             
                             Text(String(format: "$%.2f", viewModel.getTodayRevenue()))
-                                .font(.system(size: 80))
-                                .foregroundStyle(Color.red)
+                                .font(.system(size: 70))
+                                .foregroundStyle(Color.black.opacity(0.8))
                             
                             Text("Today Total Revenue")
                                 .font(.system(size: 25, weight: .bold))
+                                .gradientForeground(colors: [Color.green, Color.yellow])
                             
                         }
                     }
@@ -58,16 +60,15 @@ struct AnalyticTabView: View {
                         .frame(width: 300, height: 300)
                         .padding()
                         
-                        PieChartView()
-                            .padding()
-                            .frame(width: 300, height: 300)
                     }
                     
                     
                 }
                 GridRow {
-                    Text("R2, C1")
-                    Text("R2, C2")
+                    PieChartView()
+                        .padding()
+                        .frame(width: 600, height: 300)
+
                 }
             }
             
