@@ -16,7 +16,12 @@ import Foundation
         .init(imageName: "burger", title: "burger", category: .food, price: 12.99),
         
         // drink
-        .init(imageName: "thaiTea", title: "thai Tea", category: .drink, price: 3.99)
+        .init(imageName: "thaiTea", title: "thai Tea", category: .drink, price: 3.99),
+        .init(imageName: "bobaTea", title: "boba Tea", category: .drink, price: 4.99),
+        .init(imageName: "coffee", title: "coffee", category: .drink, price: 2.99),
+        .init(imageName: "tea", title: "tea", category: .drink, price: 1.49),
+        .init(imageName: "yogurt", title: "yogurt", category: .drink, price: 2.49),
+        .init(imageName: "bananaShake", title: "banana Shake", category: .drink, price: 3.19)
     ]
     
     var customerSelectedItems: CheckOutList
