@@ -40,26 +40,7 @@ struct AnalyticTabView: View {
                     if viewModel.getOverallSale().isEmpty {
                         Text("Please add some sales")
                     } else {
-                        
-                        Chart(viewModel.getOverallSale()) { item in
-                            BarMark(
-                                x: .value("Amount", item.amount),
-                                y: .value("Title", item.title)
-                            )
-                            
-                            .annotation(position: .overlay) {
-                                Text("\(item.amount)")
-                                    .font(.caption)
-                                    .foregroundColor(.white)
-                            }
-                            .foregroundStyle(item.amount > 50 ? .green : .red)
-                            
-                        }
-                        .chartXAxisLabel("Amount")
-                        .chartYAxisLabel("Title")
-                        .frame(width: 350, height: 350)
-                        .padding()
-                        
+                        BarChartView(viewModel: viewModel) 
                     }
                     
                     
