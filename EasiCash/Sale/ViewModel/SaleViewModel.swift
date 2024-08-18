@@ -30,6 +30,21 @@ import Foundation
         .sorted { $0.amount > $1.amount}
     }
     
+    func getSalesByCategory() -> [PiechartSaleByCategory] {
+        var categoryAmount: [String: Int] = [:]
+
+        for order in saleHistory {
+            for item in order.items {
+                categoryAmount[item.category.rawValue, default: 0] += item.quantity
+            }
+        }
+
+        return categoryAmount.map { (category, amount) in
+            PiechartSaleByCategory(category: category, amount: amount)
+        }
+        .sorted { $0.amount > $1.amount }
+    }
+    
     func getTodayRevenue() -> Double {
         saleHistory.reduce(0) { $0 + $1.price }
     }

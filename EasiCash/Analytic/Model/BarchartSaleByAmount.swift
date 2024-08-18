@@ -12,3 +12,9 @@ struct BarchartSaleByAmount: Identifiable {
     let title: String
     let amount: Int
 }
+
+struct PiechartSaleByCategory: Identifiable {
+    let id = UUID()
+    let category: String
+    let amount: Int
+}

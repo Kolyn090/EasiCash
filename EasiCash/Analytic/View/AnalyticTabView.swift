@@ -51,16 +51,37 @@ struct AnalyticTabView: View {
                                     .foregroundColor(.white)
                             }
                             .foregroundStyle(item.amount > 50 ? .green : .red)
-
+                            
                         }
                         .chartXAxisLabel("Amount")
                         .chartYAxisLabel("Title")
                         .frame(width: 300, height: 300)
                         .padding()
                         
-                        PieChartView()
-                            .padding()
-                            .frame(width: 300, height: 300)
+                        Chart(viewModel.getSalesByCategory()) { item in
+                            SectorMark(
+                                angle: .value("Amount", item.amount),
+                                innerRadius: .ratio(0.6),
+                                angularInset: 1.5
+                            )
+                            .foregroundStyle(by: .value("Category", item.category))
+                        }
+                        .chartBackground { chartProxy in
+                            GeometryReader { geometry in
+                                let frame = geometry[chartProxy.plotFrame!]
+                                VStack {
+                                    Text("Distribution of")
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                    Text("Items by Category")
+                                        .font(.caption.bold())
+                                        .foregroundColor(.primary)
+                                }
+                                .position(x: frame.midX, y: frame.midY)
+                            }
+                        }
+                        .frame(width: 300, height: 300)
+
                     }
                     
                     
