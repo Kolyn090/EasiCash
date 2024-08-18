@@ -38,26 +38,25 @@ struct PieChartView: View {
 //                    }
                 }
             }
-            .chartBackground {ChartProxy in
+            .chartBackground { chartProxy in
                 GeometryReader { geometry in
-                    let frame = geometry[ChartProxy.plotFrame!]
+                    let frame = geometry[chartProxy.plotFrame!]
                     VStack {
-                        Text("Distribution of Items by Category")
+                        Text("Distribution of")
+                            .font(.callout)
+                            .foregroundStyle(.secondary)
+                        Text("Items by Category")
                             .font(.title2.bold())
                             .foregroundColor(.primary)
                     }
-                    .position(x: frame.minX, y: frame.minY)
-                    
-                    
+                    .position(x: frame.midX, y: frame.midY)
                 }
-            }
+                }
             .chartLegend(position: .trailing)
         }
     }
 }
 
-struct PieChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        PieChartView()
-    }
+#Preview {
+    PieChartView()
 }
