@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import DeveloperToolsSupport
 
 struct MenuGridItemView: View {
     
@@ -22,10 +21,17 @@ struct MenuGridItemView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Image(item.imageName)
-                .resizable()
-                .frame(width: 150, height: 150)
-                .scaledToFit()
+            if let image = item.image {
+                image
+                    .resizable()
+                    .frame(width: 150, height: 150)
+                    .scaledToFit()
+            } else {
+                Image(item.imageName)
+                    .resizable()
+                    .frame(width: 150, height: 150)
+                    .scaledToFit()
+            }
             
             VStack(alignment: .leading) {
                 Text(item.title)
@@ -62,6 +68,6 @@ struct MenuGridItemView: View {
 }
 
 #Preview {
-    MenuGridItemView(item: MenuItem.examples[0])
+    MenuGridItemView(item: MenuViewModel().menuItems[0])
         .environment(MenuViewModel.mock)
 }
