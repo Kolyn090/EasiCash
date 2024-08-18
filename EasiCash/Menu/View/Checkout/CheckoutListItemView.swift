@@ -70,7 +70,7 @@ struct CheckoutListItemView: View {
 
 #Preview {
     
-    @Previewable @State var item: MenuItem = MenuItem.examples[0]
+    @Previewable @State var item: MenuItem = MenuViewModel().menuItems[0]
     
     CheckoutListItemView(item: $item)
 }

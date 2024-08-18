@@ -6,15 +6,20 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct MenuGridGalleryView: View {
+    
+    @Environment(MenuViewModel.self) var viewModel: MenuViewModel
     
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     @State private var selectedCategory: MenuCategory = .food
     
+    @State private var presentAddMenuItemSheetView: Bool = false
+        
     private var filteredMenuItems: [MenuItem] {
-        MenuItem.examples.filter { $0.category == selectedCategory }
+        viewModel.menuItems.filter { $0.category == selectedCategory }
     }
     
     var body: some View {
@@ -27,10 +32,24 @@ struct MenuGridGalleryView: View {
                 }
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    presentAddMenuItemSheetView.toggle()
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+        }
+        .sheet(isPresented: $presentAddMenuItemSheetView) {
+            AddNewMenuItemSheetView(presentAddMenuItemSheetView: $presentAddMenuItemSheetView)
+        }
     }
 }
 
 #Preview {
-    MenuGridGalleryView()
-        .environment(MenuViewModel.mock)
+    NavigationStack {
+        MenuGridGalleryView()
+            .environment(MenuViewModel.mock)
+    }
 }
