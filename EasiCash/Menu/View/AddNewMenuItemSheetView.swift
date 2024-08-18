@@ -15,12 +15,10 @@ struct AddNewMenuItemSheetView: View {
     @Binding var presentAddMenuItemSheetView: Bool
     
     @State private var newMenuItemTitle: String = ""
-    
     @State private var newMenuItemPrice: Double = 0
-    
     @State private var pickerItem: PhotosPickerItem?
-    
     @State private var selectedImage: Image?
+    @State private var selectedCategory: MenuCategory = .food
     
     var body: some View {
         NavigationStack {
@@ -35,16 +33,26 @@ struct AddNewMenuItemSheetView: View {
                     
                     Section {
                         TextField("Title", text: $newMenuItemTitle)
-                            .keyboardType(.numberPad)
                     } header: {
                         Text("Title")
                     }
                     
                     Section {
                         TextField("Price", value: $newMenuItemPrice, formatter: NumberFormatter())
-                            .keyboardType(.numberPad)
+                            .keyboardType(.decimalPad)
                     } header: {
                         Text("Price")
+                    }
+                    
+                    Section {
+                        Picker("Category", selection: $selectedCategory) {
+                            ForEach(MenuCategory.allCases, id: \.self) { category in
+                                Text(category.rawValue.capitalized).tag(category)
+                            }
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                    } header: {
+                        Text("Category")
                     }
                     
                 }
@@ -66,7 +74,7 @@ struct AddNewMenuItemSheetView: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        viewModel.menuItems.append(.init(imageName: newMenuItemTitle, image: selectedImage, title: newMenuItemTitle, category: .food, price: 10))
+                        viewModel.menuItems.append(.init(imageName: newMenuItemTitle, image: selectedImage, title: newMenuItemTitle, category: selectedCategory, price: newMenuItemPrice))
                         presentAddMenuItemSheetView = false
                     } label: {
                         Text("Submit")
