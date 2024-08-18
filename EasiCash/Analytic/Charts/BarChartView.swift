@@ -5,7 +5,6 @@
 //  Created by CHENGTAO on 8/17/24.
 //
 
-import Foundation
 import SwiftUI
 import Charts
 
@@ -17,7 +16,6 @@ struct BarChartView: View {
             RoundedRectangle(cornerRadius: 30)
                 .fill(Color.gray.opacity(0.15))
                 .gradientForeground(colors: [Color.green, Color.pink])
-                .frame(width: 350, height: 350)
                 .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
             
             Chart(viewModel.getOverallSale()) { item in
@@ -52,9 +50,9 @@ struct BarChartView: View {
                     AxisValueLabel()
                 }
             }
-            .frame(width: 300, height: 300)
             .padding()
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
     }
 }
