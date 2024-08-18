@@ -19,6 +19,8 @@ struct MenuGridGalleryView: View {
     @State private var presentAddMenuItemSheetView: Bool = false
     
     @Binding var submissionTapped: Bool
+    
+    var addNewMenuItemTip = AddNewMenuItemTip()
         
     private var filteredMenuItems: [MenuItem] {
         viewModel.menuItems.filter { $0.category == selectedCategory }
@@ -41,6 +43,7 @@ struct MenuGridGalleryView: View {
                 } label: {
                     Image(systemName: "plus")
                 }
+                .popoverTip(addNewMenuItemTip)
             }
         }
         .sheet(isPresented: $presentAddMenuItemSheetView) {
