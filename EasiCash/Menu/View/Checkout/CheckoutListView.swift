@@ -1,33 +1,21 @@
-//
-//  CheckoutListView.swift
-//  EasiCash
-//
-//  Created by CHENGTAO on 8/17/24.
-//
-
 import SwiftUI
 
 struct CheckoutListView: View {
     
     @Environment(MenuViewModel.self) var menuViewModel: MenuViewModel
-    
     @Environment(SaleViewModel.self) var saleViewModel: SaleViewModel
     
     @State private var orderType: OrderType = .inStore
-    
     @State private var customerName: String = ""
-    
     @State private var additionalInfo: String = ""
-    
     @State private var clearOrder: Bool = false
-    
+    @State private var submissionTapped: Bool = false
+
     var body: some View {
         @Bindable var menuViewModel = menuViewModel
         
         if menuViewModel.customerSelectedItems.items.count > 0 {
-            
             VStack {
-                
                 List {
                     Section {
                         ForEach($menuViewModel.customerSelectedItems.items) { item in
@@ -44,7 +32,6 @@ struct CheckoutListView: View {
                             }
                         }
                         .pickerStyle(.segmented)
-                        
                     } header: {
                         Text("Order Type")
                     }
@@ -59,10 +46,8 @@ struct CheckoutListView: View {
                         Text("Customer Info")
                     }
                     .listRowSeparator(.hidden)
-                    
                 }
                 .listStyle(.plain)
-                
                 
                 Spacer()
                 
@@ -80,15 +65,12 @@ struct CheckoutListView: View {
                 .cornerRadius(10)
                 .padding([.leading, .trailing, .bottom], 20)
                 
-                
                 HStack(spacing: 20) {
-                    
                     Button(role: .destructive) {
                         clearOrder.toggle()
                     } label: {
                         Text("Clear")
                     }
-                    
                     .buttonStyle(.borderedProminent)
                     
                     Button {
@@ -100,18 +82,26 @@ struct CheckoutListView: View {
                             totalPrice: menuViewModel.totalPrice
                         )
                         removeListOrder()
+                        submissionTapped = true
                     } label: {
                         Label("Checkout", systemImage: "cart")
                     }
                     .buttonStyle(.borderedProminent)
                     .padding(10)
                 }
-                
             }
             .alert("Are you sure you want to clear the order?", isPresented: $clearOrder) {
                 Button("No") { }
                 Button("Yes") { removeListOrder() }
             }
+            .overlay(
+                Group {
+                    if submissionTapped {
+                        OrderSubmissionView(submissionTapped: $submissionTapped)
+                            .transition(.scale)
+                    }
+                }
+            )
         } else {
             Text("No item selected")
         }
