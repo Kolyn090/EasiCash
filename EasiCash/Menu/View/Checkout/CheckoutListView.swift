@@ -1,3 +1,10 @@
+//
+//  CheckoutListView.swift
+//  EasiCash
+//
+//  Created by Yongye on 8/16/24.
+//
+
 import SwiftUI
 
 struct CheckoutListView: View {
@@ -6,10 +13,14 @@ struct CheckoutListView: View {
     @Environment(SaleViewModel.self) var saleViewModel: SaleViewModel
     
     @State private var orderType: OrderType = .inStore
+    
     @State private var customerName: String = ""
+    
     @State private var additionalInfo: String = ""
+    
     @State private var clearOrder: Bool = false
-    @State private var submissionTapped: Bool = false
+    
+    @Binding var submissionTapped: Bool
 
     var body: some View {
         @Bindable var menuViewModel = menuViewModel
@@ -94,14 +105,6 @@ struct CheckoutListView: View {
                 Button("No") { }
                 Button("Yes") { removeListOrder() }
             }
-            .overlay(
-                Group {
-                    if submissionTapped {
-                        OrderSubmissionView(submissionTapped: $submissionTapped)
-                            .transition(.scale)
-                    }
-                }
-            )
         } else {
             Text("No item selected")
         }
@@ -115,7 +118,7 @@ struct CheckoutListView: View {
 }
 
 #Preview {
-    CheckoutListView()
+    CheckoutListView(submissionTapped: .constant(false))
         .environment(MenuViewModel.mock)
         .environment(SaleViewModel.mock)
 }

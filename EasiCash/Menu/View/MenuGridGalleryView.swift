@@ -17,12 +17,14 @@ struct MenuGridGalleryView: View {
     @State private var selectedCategory: MenuCategory = .food
     
     @State private var presentAddMenuItemSheetView: Bool = false
+    
+    @Binding var submissionTapped: Bool
         
     private var filteredMenuItems: [MenuItem] {
         viewModel.menuItems.filter { $0.category == selectedCategory }
     }
     
-    var body: some View {
+    var body: some View {        
         ScrollView {
             FilterFoodCategoryChipsView(selectedCategory: $selectedCategory)
             
@@ -44,12 +46,20 @@ struct MenuGridGalleryView: View {
         .sheet(isPresented: $presentAddMenuItemSheetView) {
             AddNewMenuItemSheetView(presentAddMenuItemSheetView: $presentAddMenuItemSheetView)
         }
+        .overlay(
+            Group {
+                if submissionTapped {
+                    OrderSubmissionView(submissionTapped: $submissionTapped)
+                        .transition(.scale)
+                }
+            }
+        )
     }
 }
 
 #Preview {
     NavigationStack {
-        MenuGridGalleryView()
+        MenuGridGalleryView(submissionTapped: .constant(false))
             .environment(MenuViewModel.mock)
     }
 }

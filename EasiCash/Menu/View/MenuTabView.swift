@@ -11,10 +11,12 @@ struct MenuTabView: View {
     
     @State private var isInspectorPresented: Bool = true
     
+    @State private var submissionTapped: Bool = false
+    
     var body: some View {
         NavigationStack {
             VStack {
-                MenuGridGalleryView()
+                MenuGridGalleryView(submissionTapped: $submissionTapped)
             }
             .navigationTitle("Menu")
             .toolbar {
@@ -25,7 +27,7 @@ struct MenuTabView: View {
                 }
             }
             .inspector(isPresented: $isInspectorPresented) {
-                CheckoutListView()
+                CheckoutListView(submissionTapped: $submissionTapped)
             }
             
         }
