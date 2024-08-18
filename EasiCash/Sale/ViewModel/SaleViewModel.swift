@@ -89,56 +89,105 @@ import Foundation
     }
     
     static var mock: SaleViewModel {
-            let calendar = Calendar.current
-            let today = Date()
-            let yesterday = calendar.date(byAdding: .day, value: -1, to: today)!
-
-            return SaleViewModel(saleHistory: [
-                // Orders for Today
-                Order(id: UUID(), user: "Alice", note: "First order today", price: 15.98, items: [
-                    MenuItem(imageName: "burger", title: "burger", category: .food, price: 9.99, quantity: 1),
-                    MenuItem(imageName: "thaiTea", title: "Thai tea", category: .drink, price: 5.99, quantity: 1)
-                ], createdAt: calendar.date(bySettingHour: 9, minute: 0, second: 0, of: today)!, type: .inStore),
-                
-                Order(id: UUID(), user: "Bob", note: "Great service!", price: 19.98, items: [
-                    MenuItem(imageName: "burger", title: "burger", category: .food, price: 9.99, quantity: 2)
-                ], createdAt: calendar.date(bySettingHour: 12, minute: 0, second: 0, of: today)!, type: .online),
-                
-                Order(id: UUID(), user: "Charlie", note: "Quick delivery", price: 25.97, items: [
-                    MenuItem(imageName: "pho", title: "pho", category: .food, price: 12.99, quantity: 2)
-                ], createdAt: calendar.date(bySettingHour: 15, minute: 0, second: 0, of: today)!, type: .online),
-                
-                Order(id: UUID(), user: "Dave", note: "Loved the wings", price: 39.96, items: [
-                    MenuItem(imageName: "chickenWings", title: "chicken wings", category: .food, price: 9.99, quantity: 4)
-                ], createdAt: calendar.date(bySettingHour: 18, minute: 0, second: 0, of: today)!, type: .inStore),
-                
-                Order(id: UUID(), user: "Eve", note: "Tasty!", price: 25.97, items: [
-                    MenuItem(imageName: "pho", title: "pho", category: .food, price: 12.99, quantity: 2)
-                ], createdAt: calendar.date(bySettingHour: 21, minute: 0, second: 0, of: today)!, type: .online),
-
-                // Orders for Yesterday
-                Order(id: UUID(), user: "Frank", note: "Will order again", price: 9.99, items: [
-                    MenuItem(imageName: "burger", title: "burger", category: .food, price: 9.99, quantity: 1)
-                ], createdAt: calendar.date(bySettingHour: 10, minute: 0, second: 0, of: yesterday)!, type: .inStore),
-                
-                Order(id: UUID(), user: "Grace", note: "Loved the ambiance", price: 15.98, items: [
-                    MenuItem(imageName: "burger", title: "burger", category: .food, price: 9.99, quantity: 1),
-                    MenuItem(imageName: "thaiTea", title: "Thai tea", category: .drink, price: 5.99, quantity: 1)
-                ], createdAt: calendar.date(bySettingHour: 13, minute: 0, second: 0, of: yesterday)!, type: .inStore),
-                
-                Order(id: UUID(), user: "Hugo", note: "Thanks!", price: 19.98, items: [
-                    MenuItem(imageName: "pho", title: "pho", category: .food, price: 12.99, quantity: 1),
-                    MenuItem(imageName: "thaiTea", title: "Thai tea", category: .drink, price: 6.99, quantity: 1)
-                ], createdAt: calendar.date(bySettingHour: 16, minute: 0, second: 0, of: yesterday)!, type: .online),
-                
-                Order(id: UUID(), user: "Ivy", note: "Quick and easy", price: 19.98, items: [
-                    MenuItem(imageName: "pho", title: "pho", category: .food, price: 12.99, quantity: 1),
-                    MenuItem(imageName: "thaiTea", title: "Thai tea", category: .drink, price: 6.99, quantity: 1)
-                ], createdAt: calendar.date(bySettingHour: 19, minute: 0, second: 0, of: yesterday)!, type: .inStore),
-                
-                Order(id: UUID(), user: "Jack", note: "Very satisfying", price: 39.96, items: [
-                    MenuItem(imageName: "chickenWings", title: "chicken wings", category: .food, price: 9.99, quantity: 4)
-                ], createdAt: calendar.date(bySettingHour: 22, minute: 0, second: 0, of: yesterday)!, type: .online)
-            ])
-        }
+        let calendar = Calendar.current
+        let today = Date()
+        let yesterday = calendar.date(byAdding: .day, value: -1, to: today)!
+        
+        return SaleViewModel(saleHistory: [
+            // Orders for Today
+            Order(id: UUID(), user: "Alice", note: "First order today", price: 15.98, items: [
+                MenuItem(imageName: "burger", title: "burger", category: .food, price: 9.99, quantity: 1),
+                MenuItem(imageName: "thaiTea", title: "Thai tea", category: .drink, price: 5.99, quantity: 1)
+            ], createdAt: calendar.date(bySettingHour: 9, minute: 0, second: 0, of: today)!, type: .inStore),
+            
+            Order(id: UUID(), user: "Bob", note: "Great service!", price: 19.98, items: [
+                MenuItem(imageName: "burger", title: "burger", category: .food, price: 9.99, quantity: 2)
+            ], createdAt: calendar.date(bySettingHour: 12, minute: 0, second: 0, of: today)!, type: .online),
+            
+            Order(id: UUID(), user: "Charlie", note: "Quick delivery", price: 25.97, items: [
+                MenuItem(imageName: "pho", title: "pho", category: .food, price: 12.99, quantity: 2)
+            ], createdAt: calendar.date(bySettingHour: 15, minute: 0, second: 0, of: today)!, type: .online),
+            
+            Order(id: UUID(), user: "Dave", note: "Loved the wings", price: 39.96, items: [
+                MenuItem(imageName: "chickenWings", title: "chicken wings", category: .food, price: 9.99, quantity: 4)
+            ], createdAt: calendar.date(bySettingHour: 18, minute: 0, second: 0, of: today)!, type: .inStore),
+            
+            Order(id: UUID(), user: "Eve", note: "Tasty!", price: 25.97, items: [
+                MenuItem(imageName: "pho", title: "pho", category: .food, price: 12.99, quantity: 2)
+            ], createdAt: calendar.date(bySettingHour: 21, minute: 0, second: 0, of: today)!, type: .online),
+            // Orders for Today
+            Order(id: UUID(), user: "Aldvce", note: "First order today", price: 20.97, items: [
+                MenuItem(imageName: "burger", title: "burger", category: .food, price: 9.99, quantity: 1),
+                MenuItem(imageName: "thaiTea", title: "Thai tea", category: .drink, price: 3.99, quantity: 1),
+                MenuItem(imageName: "cake", title: "cake", category: .dessert, price: 6.99, quantity: 1)
+            ], createdAt: calendar.date(bySettingHour: 9, minute: 0, second: 0, of: today)!, type: .inStore),
+            
+            Order(id: UUID(), user: "Boe", note: "Great service!", price: 28.98, items: [
+                MenuItem(imageName: "pizza", title: "Pizza", category: .food, price: 14.99, quantity: 2)
+            ], createdAt: calendar.date(bySettingHour: 12, minute: 0, second: 0, of: today)!, type: .online),
+            
+            Order(id: UUID(), user: "Charliest", note: "Quick delivery", price: 39.96, items: [
+                MenuItem(imageName: "sushi", title: "Sushi", category: .food, price: 13.99, quantity: 2),
+                MenuItem(imageName: "noodle", title: "Noodle", category: .food, price: 9.99, quantity: 1)
+            ], createdAt: calendar.date(bySettingHour: 15, minute: 0, second: 0, of: today)!, type: .online),
+            
+            Order(id: UUID(), user: "Davve", note: "Loved the wings", price: 39.96, items: [
+                MenuItem(imageName: "chickenWings", title: "Chicken Wings", category: .food, price: 9.99, quantity: 4)
+            ], createdAt: calendar.date(bySettingHour: 18, minute: 0, second: 0, of: today)!, type: .inStore),
+            
+            Order(id: UUID(), user: "Exve", note: "Tasty!", price: 30.97, items: [
+                MenuItem(imageName: "pho", title: "Pho", category: .food, price: 12.99, quantity: 2),
+                MenuItem(imageName: "thaiTea", title: "Thai tea", category: .drink, price: 4.99, quantity: 1)
+            ], createdAt: calendar.date(bySettingHour: 21, minute: 0, second: 0, of: today)!, type: .online),
+            
+            
+            // Orders for Yesterday
+            Order(id: UUID(), user: "Frank", note: "Will order again", price: 9.99, items: [
+                MenuItem(imageName: "burger", title: "burger", category: .food, price: 9.99, quantity: 1)
+            ], createdAt: calendar.date(bySettingHour: 10, minute: 0, second: 0, of: yesterday)!, type: .inStore),
+            
+            Order(id: UUID(), user: "Grace", note: "Loved the ambiance", price: 15.98, items: [
+                MenuItem(imageName: "burger", title: "burger", category: .food, price: 9.99, quantity: 1),
+                MenuItem(imageName: "thaiTea", title: "Thai tea", category: .drink, price: 5.99, quantity: 1)
+            ], createdAt: calendar.date(bySettingHour: 13, minute: 0, second: 0, of: yesterday)!, type: .inStore),
+            
+            Order(id: UUID(), user: "Hugo", note: "Thanks!", price: 19.98, items: [
+                MenuItem(imageName: "pho", title: "pho", category: .food, price: 12.99, quantity: 1),
+                MenuItem(imageName: "thaiTea", title: "Thai tea", category: .drink, price: 6.99, quantity: 1)
+            ], createdAt: calendar.date(bySettingHour: 16, minute: 0, second: 0, of: yesterday)!, type: .online),
+            
+            Order(id: UUID(), user: "Ivy", note: "Quick and easy", price: 19.98, items: [
+                MenuItem(imageName: "pho", title: "pho", category: .food, price: 12.99, quantity: 1),
+                MenuItem(imageName: "thaiTea", title: "Thai tea", category: .drink, price: 6.99, quantity: 1)
+            ], createdAt: calendar.date(bySettingHour: 19, minute: 0, second: 0, of: yesterday)!, type: .inStore),
+            
+            Order(id: UUID(), user: "Jack", note: "Very satisfying", price: 39.96, items: [
+                MenuItem(imageName: "chickenWings", title: "chicken wings", category: .food, price: 9.99, quantity: 4)
+            ], createdAt: calendar.date(bySettingHour: 22, minute: 0, second: 0, of: yesterday)!, type: .online),
+            Order(id: UUID(), user: "Fransk", note: "Will order again", price: 18.98, items: [
+                MenuItem(imageName: "pizza2", title: "Pizza Special", category: .food, price: 15.99, quantity: 1),
+                MenuItem(imageName: "thaiTea", title: "Thai tea", category: .drink, price: 2.99, quantity: 1)
+            ], createdAt: calendar.date(bySettingHour: 10, minute: 0, second: 0, of: yesterday)!, type: .inStore),
+            
+            Order(id: UUID(), user: "Grdace", note: "Loved the ambiance", price: 19.98, items: [
+                MenuItem(imageName: "sashimi", title: "Sashimi", category: .food, price: 16.99, quantity: 1),
+                MenuItem(imageName: "thaiTea", title: "Thai tea", category: .drink, price: 2.99, quantity: 1)
+            ], createdAt: calendar.date(bySettingHour: 13, minute: 0, second: 0, of: yesterday)!, type: .inStore),
+            
+            Order(id: UUID(), user: "Hucgo", note: "Thanks!", price: 20.97, items: [
+                MenuItem(imageName: "noodle", title: "Noodle", category: .food, price: 9.99, quantity: 1),
+                MenuItem(imageName: "sashimi", title: "Sashimi", category: .food, price: 10.99, quantity: 1)
+            ], createdAt: calendar.date(bySettingHour: 16, minute: 0, second: 0, of: yesterday)!, type: .online),
+            
+            Order(id: UUID(), user: "Isvy", note: "Quick and easy", price: 14.98, items: [
+                MenuItem(imageName: "firedRice", title: "Fried Rice", category: .food, price: 8.99, quantity: 1),
+                MenuItem(imageName: "thaiTea", title: "Thai tea", category: .drink, price: 5.99, quantity: 1)
+            ], createdAt: calendar.date(bySettingHour: 19, minute: 0, second: 0, of: yesterday)!, type: .inStore),
+            
+            Order(id: UUID(), user: "Jacck", note: "Very satisfying", price: 29.96, items: [
+                MenuItem(imageName: "xiaolongbao", title: "Xiaolongbao", category: .food, price: 9.99, quantity: 2),
+                MenuItem(imageName: "cake", title: "Cake", category: .dessert, price: 4.99, quantity: 2)
+            ], createdAt: calendar.date(bySettingHour: 22, minute: 0, second: 0, of: yesterday)!, type: .online)
+        ])
+    }
 }

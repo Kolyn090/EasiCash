@@ -11,7 +11,7 @@ struct ContentView: View {
     
     @State private var menuViewModel: MenuViewModel = MenuViewModel()
     
-    @State private var saleViewModel: SaleViewModel = SaleViewModel()
+    @State private var saleViewModel: SaleViewModel = SaleViewModel.mock
     
     var body: some View {
         EasiCashMainTabView()
