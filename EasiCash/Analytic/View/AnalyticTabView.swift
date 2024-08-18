@@ -51,12 +51,16 @@ struct AnalyticTabView: View {
                                     .foregroundColor(.white)
                             }
                             .foregroundStyle(item.amount > 50 ? .green : .red)
+
                         }
                         .chartXAxisLabel("Amount")
                         .chartYAxisLabel("Title")
                         .frame(width: 300, height: 300)
                         .padding()
                         
+                        PieChartView()
+                            .padding()
+                            .frame(width: 300, height: 300)
                     }
                     
                     
