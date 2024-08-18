@@ -10,53 +10,39 @@ import SwiftUI
 import Charts
 
 struct PieChartView: View {
-    var menuItems: [MenuItem] = MenuItem.examples
-    
-    var groupedByCategory: [(category: MenuCategory, count: Int)] {
-        Dictionary(grouping: menuItems, by: \.category)
-            .map { (key, value) in
-                (category: key, count: value.count)
-            }
-    }
+    var viewModel: SaleViewModel
     
     var body: some View {
-        VStack {
-            Chart {
-                ForEach(groupedByCategory, id: \.category) { data in
-                    SectorMark(
-                        angle: .value("Count", data.count),
-                        innerRadius: .ratio(0.618),
-                        angularInset: 1.5
-                    )
-                    .cornerRadius(5)
-                    .foregroundStyle(by: .value("Category", data.category.rawValue.capitalized))
-//                    .annotation(position: .overlay) {
-//                        Text("\(data.category.rawValue.capitalized): \(data.count)")
-//                            .fontWeight(.semibold)
-//                            .fontDesign(.rounded)
-//                            .foregroundColor(.white)
-//                    }
-                }
+        ZStack {
+            RoundedRectangle(cornerRadius: 50)
+                .fill(Color.gray.opacity(0.15))
+                .frame(width: 350, height: 350)
+                .gradientForeground(colors: [Color.orange, Color.cyan])
+            
+            Chart(viewModel.getSalesByCategory()) { item in
+                SectorMark(
+                    angle: .value("Amount", item.amount),
+                    innerRadius: .ratio(0.6),
+                    angularInset: 1.5
+                )
+                .foregroundStyle(by: .value("Category", item.category))
             }
             .chartBackground { chartProxy in
                 GeometryReader { geometry in
                     let frame = geometry[chartProxy.plotFrame!]
                     VStack {
                         Text("Distribution of")
-                            .font(.callout)
+                            .font(.caption)
                             .foregroundStyle(.secondary)
                         Text("Items by Category")
-                            .font(.title2.bold())
+                            .font(.caption.bold())
                             .foregroundColor(.primary)
                     }
                     .position(x: frame.midX, y: frame.midY)
                 }
-                }
-            .chartLegend(position: .bottomLeading)
+            }
+            .frame(width: 300, height: 300)
         }
     }
+    
 }
-
-//#Preview {
-//    PieChartView()
-//}
