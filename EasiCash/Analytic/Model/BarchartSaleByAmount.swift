@@ -18,3 +18,15 @@ struct PiechartSaleByCategory: Identifiable {
     let category: String
     let amount: Int
 }
+
+struct HourlyIncomeSeries: Identifiable {
+    let id = UUID()
+    let label: String
+    let sales: [HourlyIncomeElement]
+}
+
+struct HourlyIncomeElement: Identifiable {
+    let id = UUID()
+    let hour: Int
+    let income: Double
+}

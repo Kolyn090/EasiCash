@@ -8,16 +8,17 @@
 import Charts
 import SwiftUI
 
+import SwiftUI
+
 struct AnalyticTabView: View {
     
     @Environment(SaleViewModel.self) var viewModel: SaleViewModel
     
     var body: some View {
         NavigationStack {
-            
-            Grid (horizontalSpacing: 20, verticalSpacing: 20) {
+            Grid(horizontalSpacing: -10, verticalSpacing: 20) {
+                
                 GridRow {
-                    
                     ZStack {
                         RoundedRectangle(cornerRadius: 50)
                             .fill(Color.gray.opacity(0.15))
@@ -25,7 +26,6 @@ struct AnalyticTabView: View {
                             .gradientForeground(colors: [Color.green, Color.yellow])
                         
                         VStack {
-                            
                             Text(String(format: "$%.2f", viewModel.getTodayRevenue()))
                                 .font(.system(size: 70))
                                 .foregroundStyle(Color.black.opacity(0.8))
@@ -33,27 +33,25 @@ struct AnalyticTabView: View {
                             Text("Today Total Revenue")
                                 .font(.system(size: 25, weight: .bold))
                                 .gradientForeground(colors: [Color.green, Color.yellow])
-                            
                         }
                     }
                     
-                    if viewModel.getOverallSale().isEmpty {
-                        Text("Please add some sales")
-                    } else {
-                        BarChartView(viewModel: viewModel) 
+                    if !viewModel.getOverallSale().isEmpty {
+                        BarChartView(viewModel: viewModel)
+                        PieChartView(viewModel: viewModel)
                     }
-                    
-                    
                 }
-                GridRow {
-                    PieChartView(viewModel: viewModel)
-                }
+                    HourlyIncomeChartView(viewModel: viewModel)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
             }
-            
             .navigationTitle("Analytic")
+            .padding(20)
         }
+        .padding(20)
     }
 }
+
 
 #Preview {
     AnalyticTabView()
