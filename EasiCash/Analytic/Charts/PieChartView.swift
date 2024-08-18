@@ -52,11 +52,11 @@ struct PieChartView: View {
                     .position(x: frame.midX, y: frame.midY)
                 }
                 }
-            .chartLegend(position: .trailing)
+            .chartLegend(position: .bottomLeading)
         }
     }
 }
 
-#Preview {
-    PieChartView()
-}
+//#Preview {
+//    PieChartView()
+//}
