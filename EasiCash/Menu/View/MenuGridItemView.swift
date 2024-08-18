@@ -20,17 +20,21 @@ struct MenuGridItemView: View {
     }
     
     var body: some View {
+
         VStack(alignment: .leading) {
             if let image = item.image {
                 image
                     .resizable()
                     .frame(width: 150, height: 150)
                     .scaledToFit()
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+
             } else {
                 Image(item.imageName)
                     .resizable()
                     .frame(width: 150, height: 150)
                     .scaledToFit()
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
             }
             
             VStack(alignment: .leading) {
@@ -63,6 +67,7 @@ struct MenuGridItemView: View {
                 menuViewModel.removeOrder(with: item)
             }
         }
+        .shadow(radius: 5) 
     }
     
 }
