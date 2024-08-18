@@ -21,7 +21,7 @@ struct AnalyticTabView: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 50)
                             .fill(Color.gray.opacity(0.15))
-                            .frame(width: 300, height: 300)
+                            .frame(width: 350, height: 350)
                             .gradientForeground(colors: [Color.green, Color.yellow])
                         
                         VStack {
@@ -57,7 +57,7 @@ struct AnalyticTabView: View {
                         }
                         .chartXAxisLabel("Amount")
                         .chartYAxisLabel("Title")
-                        .frame(width: 300, height: 300)
+                        .frame(width: 350, height: 350)
                         .padding()
                         
                     }
