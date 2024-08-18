@@ -21,7 +21,11 @@ import Foundation
         .init(imageName: "coffee", title: "coffee", category: .drink, price: 2.99),
         .init(imageName: "tea", title: "tea", category: .drink, price: 1.49),
         .init(imageName: "yogurt", title: "yogurt", category: .drink, price: 2.49),
-        .init(imageName: "bananaShake", title: "banana Shake", category: .drink, price: 3.19)
+        .init(imageName: "bananaShake", title: "banana Shake", category: .drink, price: 3.19),
+        
+        // dessert
+        .init(imageName: "cake", title: "cake", category: .dessert, price: 2.99),
+        .init(imageName: "iceCream", title: "ice Cream", category: .dessert, price: 5.99),
     ]
     
     var customerSelectedItems: CheckOutList
