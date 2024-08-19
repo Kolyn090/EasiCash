@@ -27,13 +27,14 @@ struct AnalyticTabView: View {
                     PieChartView(viewModel: viewModel)
                         .layoutPriority(1)
                 }
-                .frame(maxWidth: .infinity, minHeight: 300)
+                .frame(maxWidth: .infinity, minHeight: 280)
                 .padding()
                 
                 HourlyIncomeChartView(viewModel: viewModel)
-                    .frame(maxWidth: .infinity, maxHeight: 300)
+                    .frame(maxWidth: .infinity, maxHeight: 280)
                     .padding()
                 
+                Spacer()
             }
             .navigationTitle("Analytic")
             .padding(20)
