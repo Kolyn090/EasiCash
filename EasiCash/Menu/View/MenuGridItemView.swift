@@ -59,7 +59,9 @@ struct MenuGridItemView: View {
                     .truncationMode(.tail)
                     .minimumScaleFactor(0.7)
                 Text("Price: $\(String(format: "%.2f", item.price))")
+                    .frame(width: 150, alignment: .leading)
                     .font(.system(size: 18, weight: .regular))
+                    .minimumScaleFactor(0.7)
             }
         }
         .padding(.horizontal, 10)
