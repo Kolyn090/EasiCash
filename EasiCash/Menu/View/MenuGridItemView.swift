@@ -25,31 +25,30 @@ struct MenuGridItemView: View {
                 if let image = item.image {
                     image
                         .resizable()
-                        .frame(width: 150, height: 150)
-                        .scaledToFit()
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                    
+                        .aspectRatio(contentMode: .fill)
                 } else {
                     Image(item.imageName)
                         .resizable()
-                        .frame(width: 150, height: 150)
-                        .scaledToFit()
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .aspectRatio(contentMode: .fill)
                 }
             }
-                .overlay(alignment: .topTrailing) {
-                    if quantity > 0 {
-                        Circle()
-                            .fill(Color.black.opacity(0.8))
-                            .frame(width: 25)
-                            .padding(.horizontal, 15)
-                            .padding(.vertical, 8)
-                            .overlay {
-                                Text("\(quantity)")
-                                    .foregroundStyle(Color.white)
-                            }
-                    }
+            .frame(width: 150, height: 150, alignment: .center)
+            .contentShape(Rectangle())
+            .clipped()
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .overlay(alignment: .topTrailing) {
+                if quantity > 0 {
+                    Circle()
+                        .fill(Color.black.opacity(0.8))
+                        .frame(width: 25)
+                        .padding(.horizontal, 15)
+                        .padding(.vertical, 8)
+                        .overlay {
+                            Text("\(quantity)")
+                                .foregroundStyle(Color.white)
+                        }
                 }
+            }
             
             VStack(alignment: .leading) {
                 Text(item.title)
