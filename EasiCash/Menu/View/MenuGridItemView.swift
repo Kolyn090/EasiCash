@@ -20,22 +20,36 @@ struct MenuGridItemView: View {
     }
     
     var body: some View {
-
         VStack(alignment: .leading) {
-            if let image = item.image {
-                image
-                    .resizable()
-                    .frame(width: 150, height: 150)
-                    .scaledToFit()
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-
-            } else {
-                Image(item.imageName)
-                    .resizable()
-                    .frame(width: 150, height: 150)
-                    .scaledToFit()
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            VStack {
+                if let image = item.image {
+                    image
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                        .scaledToFit()
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                    
+                } else {
+                    Image(item.imageName)
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                        .scaledToFit()
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
             }
+                .overlay(alignment: .topTrailing) {
+                    if quantity > 0 {
+                        Circle()
+                            .fill(Color.black.opacity(0.8))
+                            .frame(width: 25)
+                            .padding(.horizontal, 15)
+                            .padding(.vertical, 8)
+                            .overlay {
+                                Text("\(quantity)")
+                                    .foregroundStyle(Color.white)
+                            }
+                    }
+                }
             
             VStack(alignment: .leading) {
                 Text(item.title)
@@ -45,18 +59,6 @@ struct MenuGridItemView: View {
             }
         }
         .padding(.horizontal, 10)
-        .overlay(alignment: .topTrailing) {
-            if quantity > 0 {
-                Circle()
-                    .fill(Color.white)
-                    .frame(width: 25)
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 8)
-                    .overlay {
-                        Text("\(quantity)")
-                    }
-            }
-        }
         .onTapGesture {
             withAnimation {
                 menuViewModel.addOrder(with: item)
