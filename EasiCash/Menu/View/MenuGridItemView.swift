@@ -53,7 +53,11 @@ struct MenuGridItemView: View {
             
             VStack(alignment: .leading) {
                 Text(item.title)
+                    .lineLimit(1)
+                    .frame(width: 150, alignment: .leading)
                     .font(.system(size: 24, weight: .medium))
+                    .truncationMode(.tail)
+                    .minimumScaleFactor(0.7)
                 Text("Price: $\(String(format: "%.2f", item.price))")
                     .font(.system(size: 18, weight: .regular))
             }
