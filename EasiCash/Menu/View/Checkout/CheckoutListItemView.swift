@@ -44,7 +44,13 @@ struct CheckoutListItemView: View {
                             item.quantity -= 1
                         }
                     } label: {
-                        Image(systemName: "minus")
+                        RoundedRectangle(cornerRadius: 3)
+                            .frame(width: 25, height: 25)
+                            .backgroundStyle(Color.secondary)
+                            .opacity(0.2)
+                            .overlay(
+                                Image(systemName: "minus")
+                            )
                     }
                     .buttonStyle(.plain)
                     .frame(width: 30, height: 50)
@@ -58,7 +64,13 @@ struct CheckoutListItemView: View {
                     Button {
                         item.quantity += 1
                     } label: {
-                        Image(systemName: "plus")
+                        RoundedRectangle(cornerRadius: 3)
+                            .frame(width: 25, height: 25)
+                            .backgroundStyle(Color.secondary)
+                            .opacity(0.2)
+                            .overlay(
+                                Image(systemName: "plus")
+                            )
                     }
                     .buttonStyle(.plain)
                     .frame(width: 30, height: 50)
